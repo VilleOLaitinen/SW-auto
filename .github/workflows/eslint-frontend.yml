@@ -21,7 +21,7 @@ jobs:
           # GitHub token
           ghToken: ${{ secrets.GITHUB_TOKEN }}
           # Relative path to files/directories to run lint on.
-          eslintFiles: frontend/src
+          eslintFiles: ./frontend/src
           # Relative path to eslint config. Can either be ".js" config, ".eslintrc" or "package.json".
-          eslintConfig: frontend/.eslintrc
+          eslintConfig: ./frontend/.eslintrc
           # File extension to run linting on.
