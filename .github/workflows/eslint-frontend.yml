@@ -23,5 +23,5 @@ jobs:
           # Relative path to files/directories to run lint on.
           eslintFiles: ../../frontend/src
           # Relative path to eslint config. Can either be ".js" config, ".eslintrc" or "package.json".
-          eslintConfig: ../../frontend/.eslintrc
+          eslintConfig: ../../frontend/.eslintrc.json
           # File extension to run linting on.
