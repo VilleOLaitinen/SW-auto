@@ -1,4 +1,4 @@
-name: ESLint frontend
+name: ESLint backend
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [18.x]
     steps:
       - name: Eslint check
         # You may pin to the exact commit or the version.
@@ -21,7 +21,7 @@ jobs:
           # GitHub token
           ghToken: ${{ secrets.GITHUB_TOKEN }}
           # Relative path to files/directories to run lint on.
-          eslintFiles: ../../backend/src
+          eslintFiles: backend/src
           # Relative path to eslint config. Can either be ".js" config, ".eslintrc" or "package.json".
-          eslintConfig: ../../backend/.eslintrc.json
+          eslintConfig: backend/.eslintrc.json
           # File extension to run linting on.
