@@ -13,15 +13,14 @@ jobs:
       matrix:
         node-version: [18.x]
     steps:
-      - name: Eslint check
+      - name: ESLint Action eslintrc
         # You may pin to the exact commit or the version.
-        # uses: krizzu/eslint-check-action@a10fa11628d6ba82cd67c76b5fb7d1549d55039e
-        uses: krizzu/eslint-check-action@v1.1.0
+        # uses: mrdivyansh/eslint-action@17eb59b7430afff999b822cb161ef44e9bd7a1cd
+        uses: mrdivyansh/eslint-action@v1.0.7
         with:
-          # GitHub token
-          ghToken: ${{ secrets.GITHUB_TOKEN }}
-          # Relative path to files/directories to run lint on.
-          eslintFiles: /backend/src
-          # Relative path to eslint config. Can either be ".js" config, ".eslintrc" or "package.json".
-          eslintConfig: /backend/.eslintrc.json
-          # File extension to run linting on.
+          # GitHub repository token for publishing inline lint annotations. Should be secrets.GITHUB_TOKEN.
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          # Path to eslintrc
+          eslint-rc: /backend/src
+          # Root directory to lint files in
+          execute-on-files: /backend/.eslintrc.json
