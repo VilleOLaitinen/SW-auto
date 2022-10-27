@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan('common'));
 
+console.log("broken lint test")
+
 // express sub-route paths
 app.use('/api/v1/cars', carRoutes);
 
