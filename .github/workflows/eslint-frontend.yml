@@ -1,13 +1,27 @@
-- name: Eslint check
-  # You may pin to the exact commit or the version.
-  # uses: krizzu/eslint-check-action@a10fa11628d6ba82cd67c76b5fb7d1549d55039e
-  uses: krizzu/eslint-check-action@v1.1.0
-  with:
-    # GitHub token
-    ghToken: ${{ secrets.GITHUB_TOKEN }}
-    # Relative path to files/directories to run lint on.
-    eslintFiles: frontend/src
-    # Relative path to eslint config. Can either be ".js" config, ".eslintrc" or "package.json".
-    eslintConfig: frontend/.eslintrc
-    # File extension to run linting on.
-    eslintExt: # optional, default is js, ts, jsx, tsx
+name: ESLint frontend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - name: Eslint check
+        # You may pin to the exact commit or the version.
+        # uses: krizzu/eslint-check-action@a10fa11628d6ba82cd67c76b5fb7d1549d55039e
+        uses: krizzu/eslint-check-action@v1.1.0
+        with:
+          # GitHub token
+          ghToken: ${{ secrets.GITHUB_TOKEN }}
+          # Relative path to files/directories to run lint on.
+          eslintFiles: frontend/src
+          # Relative path to eslint config. Can either be ".js" config, ".eslintrc" or "package.json".
+          eslintConfig: frontend/.eslintrc
+          # File extension to run linting on.
