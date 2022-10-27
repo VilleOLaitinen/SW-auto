@@ -13,14 +13,14 @@ jobs:
       matrix:
         node-version: [18.x]
     steps:
-      - name: ESLint Action eslintrc
+      - name: Eslint Annotate
         # You may pin to the exact commit or the version.
-        # uses: mrdivyansh/eslint-action@17eb59b7430afff999b822cb161ef44e9bd7a1cd
-        uses: mrdivyansh/eslint-action@v1.0.7
+        # uses: a-b-r-o-w-n/eslint-action@0c0983752a98ed6982252ebb9572d082c469a6de
+        uses: a-b-r-o-w-n/eslint-action@v2.1.0
         with:
-          # GitHub repository token for publishing inline lint annotations. Should be secrets.GITHUB_TOKEN.
+          # Token used to interact with the Github API.
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          # Path to eslintrc
-          eslint-rc: /backend/src
-          # Root directory to lint files in
-          execute-on-files: /backend/.eslintrc.json
+          # Glob pattern of files to be linted.
+          # files: /backend/*
+          # Directory where eslint should execute.
+          working-directory: /backend/
