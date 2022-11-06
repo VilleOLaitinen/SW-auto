@@ -16,21 +16,14 @@ const MergeConflict = () => {
             <span className="">-Auto</span>
           </h1>
 
-<<<<<<< HEAD
-          <div>Röyh</div>
-=======
-          <div>Kotitehtävän aiheena mergeconflictien ratkominen</div>
->>>>>>> ville-homework
+            <div>Röyh</div>
+            
           <div>Uusi ja luotettava tapa saada kolmannen osapuolen arvio autostasi!</div>
 
           <h6 className='my-3 pt-4'>Syötä rekisteritunnuksesi ja me etsimme autosi tiedot!</h6>
 
           <Form>
-<<<<<<< HEAD
             <input defaultValue={'Kummallisuuksia luvassa'}></input>
-=======
-            <input defaultValue={'Conflictia pukkaa'}></input>
->>>>>>> ville-homework
             <Container
             className='p-3 mx-3 my-3 bg-info rounded-3 shadow-sm'>
               <Row>
@@ -102,11 +95,8 @@ const MergeConflict = () => {
           <Stack>
             <img src={lada} alt="lada" />
             <p>Tämä auto (Lada Niva, 2020) arvioitiin SW-Autolla.</p>
-<<<<<<< HEAD
             <p>Ja tämäkin muutettu?</p>
-=======
-            <p>Tämäkin rivi on vaihtanut muotoaan!</p>
->>>>>>> ville-homework
+
           </Stack>
         </Col>
       </Row>
