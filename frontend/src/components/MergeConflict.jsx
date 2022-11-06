@@ -96,7 +96,6 @@ const MergeConflict = () => {
             <img src={lada} alt="lada" />
             <p>Tämä auto (Lada Niva, 2020) arvioitiin SW-Autolla.</p>
             <p>Ja tämäkin muutettu?</p>
-
           </Stack>
         </Col>
       </Row>
