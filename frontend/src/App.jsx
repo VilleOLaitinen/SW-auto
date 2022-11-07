@@ -1,11 +1,27 @@
+<<<<<<< Updated upstream
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+=======
+import React, { useState } from "react";
+import Paths from './Paths'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import  Login  from "./components/Login";
+import  Register  from "./components/Register";
 
+function App() {
+  const [currentForm, setCurrentForm] = useState('login');
+>>>>>>> Stashed changes
+
+  const toggleForm = (formName) => {
+    setCurrentForm(formName);
+
+  }
   return (
+<<<<<<< Updated upstream
     <div className="App">
       <div>
         <a href="https://vitejs.dev" target="_blank">
@@ -28,7 +44,14 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </div>
+=======
+    <div classname="App">
+     
+    
+      <Paths />
+      </div>
+>>>>>>> Stashed changes
   )
 }
 
-export default App
+export default App;
