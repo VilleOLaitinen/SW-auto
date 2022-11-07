@@ -4,9 +4,9 @@ const Environment = {
   },
   nettix: {
     // someone could make a shared account or so
-    email: "",
-    password: ""
-  }
+    email: '',
+    password: '',
+  },
 };
 
 export default Environment;

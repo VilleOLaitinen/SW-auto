@@ -6,7 +6,6 @@ import NettixService from '../services/nettix.service.js';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-
   const carMakes = await CarsService.GetMakes();
   res.send(carMakes);
 });

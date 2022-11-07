@@ -1,25 +1,26 @@
-import NettixService from "./nettix.service.js";
-import Environment from "../environment.js";
-import axios from "axios";
+import NettixService from './nettix.service.js';
+import Environment from '../environment.js';
+import axios from 'axios';
 
 export default class CarsService {
+  static #baseUrl = 'https://api.nettix.fi/rest/car/';
 
-  static #baseUrl = "https://api.nettix.fi/rest/car/";
-
-  static #accessToken = "";
-  static #refreshToken = "";
+  static #accessToken = '';
+  static #refreshToken = '';
   static #expireTime = 0;
 
   static async #getToken() {
-
     const currentTime = new Date().getTime();
     let response = null; // just to reduce repeated code
 
     if (!CarsService.#accessToken || !CarsService.#refreshToken) {
-      const auth = await NettixService.Authenticate(Environment.nettix.email, Environment.nettix.password);
+      const auth = await NettixService.Authenticate(
+        Environment.nettix.email,
+        Environment.nettix.password
+      );
 
       if (!auth) {
-        throw new Error("Unable to authenticate with nettix");
+        throw new Error('Unable to authenticate with nettix');
       }
 
       response = auth;
@@ -44,14 +45,14 @@ export default class CarsService {
     try {
       const token = await CarsService.#getToken();
 
-      const makes = await axios.get(this.#baseUrl + "options/make", {
+      const makes = await axios.get(this.#baseUrl + 'options/make', {
         headers: {
-          'X-Access-Token': token
-        }
+          'X-Access-Token': token,
+        },
       });
       return makes.data;
     } catch (e) {
-      console.error("GetMakes() error:", e.message);
+      console.error('GetMakes() error:', e.message);
     }
   }
 }
