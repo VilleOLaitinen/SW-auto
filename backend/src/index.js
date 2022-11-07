@@ -5,13 +5,16 @@ import cors from 'cors';
 import morgan from 'morgan';
 
 import carRoutes from './routes/car.js';
+import { customMiddleware } from './middleware.js';
 
 const app = express();
-
 // express plugins
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan('common'));
+
+// custom middlewares
+app.use(customMiddleware);
 
 // express sub-route paths
 app.use('/api/v1/cars', carRoutes);
