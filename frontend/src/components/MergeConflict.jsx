@@ -16,11 +16,11 @@ const MergeConflict = () => {
             <span className="">-Auto</span>
           </h1>
 
-            <div>Röyh Eelis oli homeworkEelis branchissä</div>
+            <div>Jaanin muokkaukset homework branchissä rulaa!</div>
             
           <div>Uusi ja luotettava tapa saada kolmannen osapuolen arvio autostasi!</div>
 
-          <h6 className='my-3 pt-4'>Syötä rekisteritunnuksesi ja me etsimme autosi tiedot!</h6>
+          <h6 className='my-3 pt-4'>Syötä rekisteritunnuksesi ja me löydämme kotisi!</h6>
 
           <Form>
             <input defaultValue={'Kummallisuuksia luvassa'}></input>
@@ -56,8 +56,8 @@ const MergeConflict = () => {
                     label={`Kevytmetallivanteet`}
                   />
                     <Form.Check 
-                    id={`peruutuskamera`}
-                    label={`Peruutuskamera`}
+                    id={`heittoistuin`}
+                    label={`Heittoistuin`}
                   />
                     <Form.Check 
                     id={`startstop`}
@@ -71,8 +71,8 @@ const MergeConflict = () => {
                     label={`Peruutustutka`}
                   />
                   <Form.Check 
-                    id={`tummennetutlasit`}
-                    label={`Tummennetut etulasit`}
+                    id={`gangsterilasit`}
+                    label={`Gangsteri-etulasit`}
                   />
                     <Form.Check 
                     id={`navigointi`}
