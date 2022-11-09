@@ -16,7 +16,7 @@ const MergeConflict = () => {
             <span className="">-Auto</span>
           </h1>
 
-            <div>Jaani fiksaili täällä 8.11.2022</div>
+            <div>Aleksanteri homework-aleksanteri branch 9.11.2022</div>
             
           <div>Uusi ja luotettava tapa saada neljännen osapuolen arvio autostasi!</div>
 
