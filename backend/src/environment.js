@@ -1,11 +1,14 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 const Environment = {
   server: {
     port: 3000,
   },
   nettix: {
-    // someone could make a shared account or so
-    email: '',
-    password: '',
+    // loaded from .env in the root of the project, NETTIX_USERNAME=username...
+    email: process.env.NETTIX_USERNAME,
+    password: process.env.NETTIX_PASSWORD,
   },
 };
 
