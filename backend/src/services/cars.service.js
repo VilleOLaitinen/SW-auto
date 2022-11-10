@@ -1,6 +1,7 @@
 import NettixService from './nettix.service.js';
 import Environment from '../environment.js';
 import axios from 'axios';
+import Cache from 'async-disk-cache';
 
 export default class CarsService {
   static #baseUrl = 'https://api.nettix.fi/rest/car/';
@@ -8,10 +9,34 @@ export default class CarsService {
   static #accessToken = '';
   static #refreshToken = '';
   static #expireTime = 0;
+  static #cache = new Cache('sw-auto');
 
   static async #getToken() {
     const currentTime = new Date().getTime();
-    let response = null; // just to reduce repeated code
+
+    if (await this.#cache.has('NettixRefreshToken')) {
+      const cachedToken = await this.#cache.get('NettixRefreshToken');
+      console.log('Disk cached Nettix refresh token:', cachedToken);
+      this.#refreshToken = cachedToken.value;
+    }
+
+    if (CarsService.#refreshToken && currentTime > CarsService.#expireTime) {
+      const refresh = await NettixService.RefreshToken(
+        CarsService.#refreshToken
+      );
+
+      if (!refresh) {
+        console.log(
+          "Couldn't refresh token, resetting access and refresh tokens"
+        );
+        await this.#cache.remove('NettixRefreshToken');
+      }
+
+      // if refresh is null, both of these will be null, if not then proper values are set
+      CarsService.#accessToken = refresh?.access_token;
+      CarsService.#refreshToken = refresh?.refresh_token;
+      CarsService.#expireTime = currentTime + refresh?.expires_in * 1000;
+    }
 
     if (!CarsService.#accessToken || !CarsService.#refreshToken) {
       const auth = await NettixService.Authenticate(
@@ -23,19 +48,11 @@ export default class CarsService {
         throw new Error('Unable to authenticate with nettix');
       }
 
-      response = auth;
-    }
+      await this.#cache.set('NettixRefreshToken', auth.refresh_token);
 
-    if (CarsService.#refreshToken && currentTime > CarsService.#expireTime) {
-      response = await NettixService.RefreshToken(CarsService.#refreshToken);
-    }
-
-    if (response) {
-      // we should add some error handling here
-      CarsService.#accessToken = response.access_token;
-      CarsService.#refreshToken = response.refresh_token;
-      // store expiration time as a unix timestamp in milliseconds
-      CarsService.#expireTime = currentTime + response.expires_in * 1000;
+      CarsService.#accessToken = auth.access_token;
+      CarsService.#refreshToken = auth.refresh_token;
+      CarsService.#expireTime = currentTime + auth.expires_in * 1000;
     }
 
     return CarsService.#accessToken;
