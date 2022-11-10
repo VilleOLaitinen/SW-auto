@@ -55,4 +55,25 @@ export default class CarsService {
       console.error('GetMakes() error:', e.message);
     }
   }
+
+  static async GetModels(makeId) {
+    try {
+      const token = await CarsService.#getToken();
+
+      // prevent LFI
+      makeId = parseInt(makeId);
+
+      const models = await axios.get(
+        this.#baseUrl + `options/model?makeId=${makeId}`,
+        {
+          headers: {
+            'X-Access-Token': token,
+          },
+        }
+      );
+      return models.data;
+    } catch (e) {
+      console.error('GetModels() error:', e.message);
+    }
+  }
 }
