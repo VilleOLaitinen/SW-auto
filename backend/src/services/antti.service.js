@@ -28,6 +28,7 @@ export class AnttiService {
       }
     }
   }
+
   static async GetAvgPriceOfMake(makeId, sampleSize = 100) {
     if (sampleSize > 100) {
       console.log('sampleSize has max value of 100, changed to 100');
