@@ -29,6 +29,8 @@ console.log(`Server listening on port ${Environment.server.port}`);
 app.listen(Environment.server.port);
 console.log(
   await AnttiService.GetAvgPriceOfMake(
-    await AnttiService.GetIdFromName('Skoda')
+    await AnttiService.GetIdFromName('Mercedes-Benz'),
+    100,
+    'price'
   )
 );
