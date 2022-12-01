@@ -28,8 +28,7 @@ export class AnttiService {
       }
     }
   }
-
-  static async GetAvgPriceOfMake(makeId, sampleSize = 100) {
+  static async GetAvgPriceOfMake(makeId, sampleSize = 100, sortBy) {
     if (sampleSize > 100) {
       console.log('sampleSize has max value of 100, changed to 100');
       sampleSize = 100;
@@ -37,7 +36,8 @@ export class AnttiService {
     const requestUrl =
       'https://api.nettix.fi/rest/car/search?make=' +
       makeId +
-      '&sortBy=dateCreated' +
+      '&sortBy=' +
+      sortBy.toString() +
       '&rows=' +
       sampleSize;
     const request = await axios.get(requestUrl, {
@@ -46,12 +46,20 @@ export class AnttiService {
       },
     });
     let cars = request.data;
+    let MedianCars = Math.floor(cars.length / 2);
     let counter = 0;
+
     for (let x of cars) {
       if (x['isPriced'] == true) {
         counter += x['price'];
       }
     }
-    return counter / cars.length;
+    return {
+      MakeName: await AnttiService.GetNameFromId(makeId),
+      AVGPrice: counter / cars.length,
+      medianPrice: cars[MedianCars]['price'],
+      minPrice: cars[0]['price'],
+      maxPrice: cars[sampleSize - 1]['price'],
+    };
   }
 }
