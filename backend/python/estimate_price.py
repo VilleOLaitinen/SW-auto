@@ -5,7 +5,7 @@ def estimate_price():
 
     # Opening JSON file
     with open('python/cars.json') as json_file:
-    	data = json.load(json_file)
+        data = json.load(json_file)
 
     my_car = data['my_car'][0]
     p_dict, my_dict = {}, {}
@@ -63,13 +63,15 @@ def estimate_price():
     test_list = []
 
     for i in range(len(test_data)):
-        test_list.append(np.array(test_data[i][:-1], dtype='int64'))
+        if test_data[i] == 'petrol' or test_data[i] == 'manual':
+            test_list.append(np.array(0, dtype='int64'))
+        elif test_data[i] == 'diesel' or test_data[i] == 'automat':
+            test_list.append(np.array(0, dtype='int64'))
+        else:
+            test_list.append(np.array(test_data[i][:-1], dtype='int64'))
 
     x_testing = np.array(test_list)
 
-    # print(np.matrix(x_list))
-    # print(np.matrix(y_list))
-    # print(np.matrix(x_testing))
 
     """fit a linear regression model to the data and get the coefficients"""
     c = np.linalg.lstsq(x_list, y_list)[0]
@@ -77,7 +79,7 @@ def estimate_price():
     # print(c)
 
     result = x_testing @ c
-
+    print(result)
     return str(result[0])
 
 
