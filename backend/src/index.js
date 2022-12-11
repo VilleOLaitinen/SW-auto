@@ -6,6 +6,7 @@ import morgan from 'morgan';
 
 import carRoutes from './routes/car.js';
 import { customMiddleware } from './middleware.js';
+import { AnttiService } from './services/antti.service.js';
 
 const app = express();
 // express plugins
@@ -26,3 +27,8 @@ app.get('/', (req, res) => {
 // express listen
 console.log(`Server listening on port ${Environment.server.port}`);
 app.listen(Environment.server.port);
+console.log(
+  await AnttiService.GetAvgPriceOfMake(
+    await AnttiService.GetIdFromName('Skoda')
+  )
+);
