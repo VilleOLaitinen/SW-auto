@@ -1,4 +1,16 @@
+""" README:
+    1) Works at the moment with only a certain order of the keys in the JSON.
 
+    2) All new non-int data exceptions must be added to code, while they are added to JSON.
+    
+    3. Add pyscript specific lines to html document before using. 
+        https://github.com/pyscript/pyscript
+
+            (<head>
+            <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+            </head>)
+            """
+            
 def estimate_price():
     import json
     import numpy as np
@@ -56,7 +68,6 @@ def estimate_price():
     training_list = []
 
     for i in range(len(training_data)):
-        print(training_data[i])
         training_list.append(np.array(training_data[i], dtype='int64'))
 
     training_arr = np.array(training_list)
