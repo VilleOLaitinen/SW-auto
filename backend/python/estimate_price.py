@@ -4,43 +4,48 @@ def estimate_price():
     import numpy as np
 
     # Opening JSON file
-    with open('cars.json') as json_file:
+    with open('python/cars.json') as json_file:
     	data = json.load(json_file)
 
-        my_car = data['my_car'][0]
-        p_dict, my_dict = {}, {}
+    my_car = data['my_car'][0]
+    p_dict, my_dict = {}, {}
 
-        car_list = []
-        training_data, test_data = [], []
-        for i in range(len(data['cars'])):
-            p_dict = data['cars'][i]
-            
-            for key in p_dict:
-                if key in my_car:
-                    if key == 'engine':
-                        litres = float(p_dict[key])
-                        car_list.append(int(litres * 10))
-                    else:
-                        car_list.append(p_dict[key])
-                if key == 'price':
-                    car_list.append(p_dict[key])
-            training_data.append(car_list)
-            car_list = []
-
-        for k in range(len(data['my_car'])):
-            my_dict = data['my_car'][k]
-            for key in my_dict:
+    car_list = []
+    training_data, test_data = [], []
+    for i in range(len(data['cars'])):
+        p_dict = data['cars'][i]
+        
+        for key in p_dict:
+            if key in my_car:
                 if key == 'engine':
                     litres = float(p_dict[key])
-                    test_data.append(int(litres * 10))
-                elif key != 'price':
-                    test_data.append(my_dict[key])
+                    car_list.append(int(litres * 10))
+                else:
+                    car_list.append(p_dict[key])
+            if key == 'price':
+                car_list.append(p_dict[key])
+        training_data.append(car_list)
+        car_list = []
+
+    for k in range(len(data['my_car'])):
+        my_dict = data['my_car'][k]
+        for key in my_dict:
+            if key == 'engine':
+                litres = float(p_dict[key])
+                test_data.append(int(litres * 10))
+            elif key != 'price':
+                test_data.append(my_dict[key])
 
     """ Create training array"""
     training_list = []
 
     for i in range(len(training_data)):
-        training_list.append(np.array(training_data[i], dtype='int64'))
+        if training_data[i] == 'petrol' or training_data[i] == 'manual':
+            training_list.append(np.array(0, dtype='int64'))
+        elif training_data[i] == 'diesel' or training_data[i] == 'automat':
+            training_list.append(np.array(0, dtype='int64'))
+        else:
+            training_list.append(np.array(training_data[i], dtype='int64'))
 
     training_arr = np.array(training_list)
 
@@ -74,3 +79,6 @@ def estimate_price():
     result = x_testing @ c
 
     return str(result[0])
+
+
+print(estimate_price())
