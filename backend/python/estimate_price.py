@@ -4,14 +4,17 @@ def estimate_price():
     import numpy as np
 
     # Opening JSON file
-    with open('python/cars.json') as json_file:
+    with open('cars.json') as json_file:
         data = json.load(json_file)
 
     my_car = data['my_car'][0]
     p_dict, my_dict = {}, {}
 
+    
     car_list = []
     training_data, test_data = [], []
+    
+    # Applying training_data from p_dict
     for i in range(len(data['cars'])):
         p_dict = data['cars'][i]
         
@@ -20,6 +23,11 @@ def estimate_price():
                 if key == 'engine':
                     litres = float(p_dict[key])
                     car_list.append(int(litres * 10))
+                elif key == 'power_type' or key == 'gearbox_type' or key == 'drive_type':
+                    if p_dict[key ] == 'diesel' or p_dict[key] == 'automatic' or p_dict[key] == 'front':
+                        car_list.append(1)
+                    else:
+                        car_list.append(0)
                 else:
                     car_list.append(p_dict[key])
             if key == 'price':
@@ -27,12 +35,20 @@ def estimate_price():
         training_data.append(car_list)
         car_list = []
 
+    # Applying test_data from my_dict
+
     for k in range(len(data['my_car'])):
         my_dict = data['my_car'][k]
         for key in my_dict:
             if key == 'engine':
-                litres = float(p_dict[key])
+                litres = float(my_dict[key])
                 test_data.append(int(litres * 10))
+            elif key == 'power_type' or key == 'gearbox_type' or key == 'drive_type':
+                if my_dict[key ] == 'diesel' or my_dict[key] == 'automatic' or my_dict[key] == 'front':
+                    test_data.append(1)
+                else:
+                    test_data.append(0)
+
             elif key != 'price':
                 test_data.append(my_dict[key])
 
@@ -40,12 +56,8 @@ def estimate_price():
     training_list = []
 
     for i in range(len(training_data)):
-        if training_data[i] == 'petrol' or training_data[i] == 'manual':
-            training_list.append(np.array(0, dtype='int64'))
-        elif training_data[i] == 'diesel' or training_data[i] == 'automat':
-            training_list.append(np.array(0, dtype='int64'))
-        else:
-            training_list.append(np.array(training_data[i], dtype='int64'))
+        print(training_data[i])
+        training_list.append(np.array(training_data[i], dtype='int64'))
 
     training_arr = np.array(training_list)
 
@@ -63,12 +75,7 @@ def estimate_price():
     test_list = []
 
     for i in range(len(test_data)):
-        if test_data[i] == 'petrol' or test_data[i] == 'manual':
-            test_list.append(np.array(0, dtype='int64'))
-        elif test_data[i] == 'diesel' or test_data[i] == 'automat':
-            test_list.append(np.array(0, dtype='int64'))
-        else:
-            test_list.append(np.array(test_data[i][:-1], dtype='int64'))
+        test_list.append(np.array(test_data[i], dtype='int64'))
 
     x_testing = np.array(test_list)
 
@@ -79,8 +86,8 @@ def estimate_price():
     # print(c)
 
     result = x_testing @ c
-    print(result)
-    return str(result[0])
+
+    return result
 
 
 print(estimate_price())
