@@ -1,0 +1,41 @@
+{
+  "cars": [
+    {
+      "power_type": "diesel",
+      "gearbox_type": "automatic",
+      "engine": "1.8",
+      "drive_type": "front",
+      "mileage": "248000",
+      "year": "2012",
+      "price": "11000"
+    },
+    {
+      "power_type": "petrol",
+      "gearbox_type": "automatic",
+      "engine": "2.0",
+      "drive_type": "front",
+      "mileage": "204000",
+      "year": "2011",
+      "price": "9900"
+    },
+    {
+      "power_type": "diesel",
+      "gearbox_type": "automatic",
+      "engine": "2.0",
+      "drive_type": "front",
+      "mileage": "215000",
+      "year": "2013",
+      "price": "11500"
+    }
+  ],
+  "my_car": [
+    {
+      "power_type": "diesel",
+      "gearbox_type": "automatic",
+      "engine": "2.0",
+      "drive_type": "front",
+      "mileage": "279500",
+      "year": "2012"
+    }
+  ]
+}
