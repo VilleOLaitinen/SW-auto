@@ -1,0 +1,108 @@
+{
+  "cars": [
+    {
+      "make": "Ford",
+      "model": "Fiesta",
+      "year": 2012,
+      "mileage": 65000,
+      "color": "Red",
+      "price": 7500
+    },
+    {
+      "make": "Toyota",
+      "model": "Camry",
+      "year": 2015,
+      "mileage": 30000,
+      "color": "Silver",
+      "price": 12500
+    },
+    {
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2018,
+      "mileage": 10000,
+      "color": "Blue",
+      "price": 17000
+    },
+    {
+      "make": "Hyundai",
+      "model": "Sonata",
+      "year": 2010,
+      "mileage": 70000,
+      "color": "White",
+      "price": 8000
+    },
+    {
+      "make": "Kia",
+      "model": "Optima",
+      "year": 2013,
+      "mileage": 50000,
+      "color": "Black",
+      "price": 9000
+    },
+    {
+      "make": "Mazda",
+      "model": "3",
+      "year": 2014,
+      "mileage": 40000,
+      "color": "Grey",
+      "price": 10000
+    },
+    {
+      "make": "Nissan",
+      "model": "Altima",
+      "year": 2016,
+      "mileage": 30000,
+      "color": "Red",
+      "price": 11000
+    },
+    {
+      "make": "Subaru",
+      "model": "Impreza",
+      "year": 2017,
+      "mileage": 20000,
+      "color": "Silver",
+      "price": 14000
+    },
+    {
+      "make": "Volkswagen",
+      "model": "Jetta",
+      "year": 2019,
+      "mileage": 10000,
+      "color": "Blue",
+      "price": 17500
+    },
+    {
+      "make": "BMW",
+      "model": "3 Series",
+      "year": 2020,
+      "mileage": 5000,
+      "color": "White",
+      "price": 30000
+    },
+    {
+      "make": "Mercedes-Benz",
+      "model": "C-Class",
+      "year": 2010,
+      "mileage": 65000,
+      "color": "Black",
+      "price": 20000
+    },
+    {
+      "make": "Audi",
+      "model": "A4",
+      "year": 2011,
+      "mileage": 60000,
+      "color": "Grey",
+      "price": 25000
+    },
+    {
+      "make": "Cadillac",
+      "model": "CTS",
+      "year": 2012,
+      "mileage": 55000,
+      "color": "Red",
+      "price": 30000
+    }
+  ]
+}
